@@ -1,0 +1,63 @@
+@use './abstract/colors' as *;
+
+.light{
+
+    .text-title{
+        color: $dark-900;
+    }
+
+    .text-card{
+        color: $dark-900;
+    }
+
+    .text-subtitle{
+        color: $dark-500;
+    }
+
+    .background-primary{
+        background-color: $light-900;
+    }
+
+    .background-secondary{
+        background-color: $light-800;
+    }
+
+    .background-tertiary{
+        background-color: $yellowLight;
+    }
+
+  
+
+}
+
+.dark{
+
+   .text-title{
+        color: $light-900;
+    }
+
+    .text-card{
+        color: $dark-900;
+    }
+
+    .text-subtitle{
+        color: $dark-500;
+    }
+
+    .background-primary{
+        background-color: $dark-900;
+    }
+
+    .background-secondary{
+        background-color: $dark-700;
+    }
+
+    .background-tertiary{
+        background-color: $yellowDark;
+    }
+
+    
+
+    
+       
+}
