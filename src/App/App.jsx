@@ -10,9 +10,11 @@ import Column from "./components/Column/Column";
 function App() {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState("init");
+  const [candidates, setCandidates] = useState();
 
   useEffect(() => {
     api.candidates.list().then((candidates) => {
+      setCandidates(candidates);
       setData(
         candidates.reduce((acc, candidate) => {
           const step = candidate.step;
@@ -24,14 +26,14 @@ function App() {
         }, {}),
       );
       setStatus("resolved");
+      console.log(candidates);
+      console.log(data);
     });
   }, []);
 
   if (status === "init") {
     return <span>Cargando...</span>;
   }
-
-  console.log(data);
 
   const steps = ["Entrevista inicial", "Entrevista técnica", "Oferta", "Asignacion", "Rechazo"];
 
@@ -40,7 +42,9 @@ function App() {
       <div className={`background-primary ${styles.App}`}>
         <main className={`${styles.columnsContainer} `}>
           {steps.map((step) => {
-            return <Column key={step} data={data[step] || []} title={step} />;
+            const id = steps.indexOf(step);
+
+            return <Column key={step} data={data[step] || []} id={id} title={step} />;
           })}
         </main>
       </div>
