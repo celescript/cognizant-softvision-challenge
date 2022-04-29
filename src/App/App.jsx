@@ -29,7 +29,20 @@ function App() {
       console.log(candidates);
       console.log(data);
     });
-  }, []);
+  }, [candidates]);
+
+  const updateCandidateStep = (id, stepData, action) => {
+    setCandidates((candidates) =>
+      candidates.map((candidate) => {
+        if (candidate.id === id) {
+          action === "add"
+            ? (candidate.step = steps[stepData + 1])
+            : (candidate.step = steps[stepData - 1]);
+        }
+        candidate;
+      }),
+    );
+  };
 
   if (status === "init") {
     return <span>Cargando...</span>;
@@ -42,9 +55,17 @@ function App() {
       <div className={`background-primary ${styles.App}`}>
         <main className={`${styles.columnsContainer} `}>
           {steps.map((step) => {
-            const id = steps.indexOf(step);
+            const candidateStep = steps.indexOf(step);
 
-            return <Column key={step} data={data[step] || []} id={id} title={step} />;
+            return (
+              <Column
+                key={step}
+                candidateStep={candidateStep}
+                data={data[step] || []}
+                title={step}
+                updateCandidateStep={updateCandidateStep}
+              />
+            );
           })}
         </main>
       </div>

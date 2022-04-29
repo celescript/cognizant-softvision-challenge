@@ -6,11 +6,12 @@ import CandidateList from "../CandidateList/CandidateList";
 
 import styles from "./Column.module.scss";
 
-const Column = ({title, data, id}) => {
+const Column = ({title, data, candidateStep, updateCandidateStep}) => {
   const [open, setOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
     setOpen(!open);
   };
 
@@ -18,9 +19,13 @@ const Column = ({title, data, id}) => {
     <div className={`background-secondary ${styles.Column}`}>
       <h1 className={`text-title ${styles.title}`}>{title}</h1>
 
-      <CandidateList data={data} id={id} />
+      <CandidateList
+        candidateStep={candidateStep}
+        data={data}
+        updateCandidateStep={updateCandidateStep}
+      />
 
-      {id === 0 &&
+      {candidateStep === 0 &&
         (open ? (
           <CandidateInput open={open} setOpen={setOpen} />
         ) : (
