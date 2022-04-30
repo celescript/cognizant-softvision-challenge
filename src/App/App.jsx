@@ -61,7 +61,9 @@ function App() {
               <Column
                 key={step}
                 candidateStep={candidateStep}
+                candidates={candidates}
                 data={data[step] || []}
+                setCandidates={setCandidates}
                 title={step}
                 updateCandidateStep={updateCandidateStep}
               />
