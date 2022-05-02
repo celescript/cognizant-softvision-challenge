@@ -26,7 +26,14 @@
         background-color: $yellowLight;
     }
 
-  
+    .btn{
+        border: 1px solid $dark-900; 
+
+        &:hover{
+            background-color: $light-600;
+        }
+        
+     }
 
 }
 
@@ -54,6 +61,13 @@
 
     .background-tertiary{
         background-color: $yellowDark;
+    }
+
+    .btn{
+       border: 1px solid $light-900; 
+        &:hover{
+            background-color: $dark-800;
+        }
     }
 
     
