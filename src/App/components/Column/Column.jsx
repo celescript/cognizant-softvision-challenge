@@ -50,10 +50,14 @@ const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates,
             handleSubmit={handleSubmit}
             open={open}
             setOpen={setOpen}
+            type="add"
           />
         ) : (
-          <button className={styles.button} onClick={() => setOpen(!open)}>
-            <BiPlus />
+          <button
+            className={`${styles.button} btn background-secondary`}
+            onClick={() => setOpen(!open)}
+          >
+            <BiPlus className="text-title" />
           </button>
         ))}
     </div>
