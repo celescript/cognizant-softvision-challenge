@@ -7,10 +7,13 @@ import "./_reset.scss";
 import styles from "./App.module.scss";
 import Column from "./components/Column/Column";
 
+import {BiMoon, BiSun} from "react-icons/bi";
+
 function App() {
   const [data, setData] = useState([]);
   const [status, setStatus] = useState("init");
   const [candidates, setCandidates] = useState();
+  const [theme, setTheme] = useState("light");
 
   useEffect(() => {
     api.candidates.list().then((candidates) => {
@@ -51,8 +54,14 @@ function App() {
   const steps = ["Entrevista inicial", "Entrevista técnica", "Oferta", "Asignacion", "Rechazo"];
 
   return (
-    <div className={`light ${styles.theme}`}>
+    <div className={`${theme} ${styles.theme}`}>
       <div className={`background-primary ${styles.App}`}>
+        <button
+          className={`button background-tertiary ${styles.btn}`}
+          onClick={() => setTheme(theme === "light" ? "dark" : "light")}
+        >
+          {theme === "light" ? <BiSun /> : <BiMoon />}
+        </button>
         <main className={`${styles.columnsContainer} `}>
           {steps.map((step) => {
             const candidateStep = steps.indexOf(step);
