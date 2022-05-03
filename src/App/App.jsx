@@ -1,5 +1,5 @@
 import React from "react";
-import {useEffect, useState} from "react";
+import {useEffect, useState, useMemo} from "react";
 
 import api from "../api";
 import "./_reset.scss";
@@ -9,38 +9,46 @@ import Column from "./components/Column/Column";
 
 import {BiMoon, BiSun} from "react-icons/bi";
 
+const steps = ["Entrevista inicial", "Entrevista técnica", "Oferta", "Asignacion", "Rechazo"];
+
 function App() {
-  const [data, setData] = useState([]);
   const [status, setStatus] = useState("init");
-  const [candidates, setCandidates] = useState();
+  const [candidates, setCandidates] = useState([]);
   const [theme, setTheme] = useState("light");
+  const data = useMemo(() => {
+    return candidates.reduce((acc, candidate) => {
+      const step = candidate.step;
+
+      if (acc[step] === undefined) acc[step] = [];
+      acc[step].push(candidate);
+
+      return acc;
+    }, {});
+  }, [candidates]);
 
   useEffect(() => {
     api.candidates.list().then((candidates) => {
+      console.log(candidates);
       setCandidates(candidates);
-      setData(
-        candidates.reduce((acc, candidate) => {
-          const step = candidate.step;
-
-          if (acc[step] === undefined) acc[step] = [];
-          acc[step].push(candidate);
-
-          return acc;
-        }, {}),
-      );
       setStatus("resolved");
     });
+  }, []);
+
+  useEffect(() => {
+    api.candidates.save(candidates);
   }, [candidates]);
 
   const updateCandidateStep = (id, stepData, action) => {
     setCandidates((candidates) =>
       candidates.map((candidate) => {
         if (candidate.id === id) {
-          action === "add"
-            ? (candidate.step = steps[stepData + 1])
-            : (candidate.step = steps[stepData - 1]);
+          return {
+            ...candidate,
+            step: action === "add" ? steps[stepData + 1] : steps[stepData - 1],
+          };
         }
-        candidate;
+
+        return candidate;
       }),
     );
   };
@@ -48,8 +56,6 @@ function App() {
   if (status === "init") {
     return <span>Cargando...</span>;
   }
-
-  const steps = ["Entrevista inicial", "Entrevista técnica", "Oferta", "Asignacion", "Rechazo"];
 
   return (
     <div className={`${theme} ${styles.theme}`}>
@@ -61,9 +67,7 @@ function App() {
           {theme === "light" ? <BiSun /> : <BiMoon />}
         </button>
         <main className={`${styles.columnsContainer} `}>
-          {steps.map((step) => {
-            const candidateStep = steps.indexOf(step);
-
+          {steps.map((step, candidateStep) => {
             return (
               <Column
                 key={step}

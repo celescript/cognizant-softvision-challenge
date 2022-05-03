@@ -8,7 +8,7 @@ import styles from "./Column.module.scss";
 
 const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates, candidates}) => {
   const initialValues = {
-    id: candidates.length + 1,
+    id: Number(new Date()),
     name: "",
     step: "Entrevista inicial",
     comments: "",
@@ -27,7 +27,7 @@ const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates,
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    setCandidates(candidates.push(form));
+    setCandidates((candidates) => candidates.concat(form));
     setOpen(!open);
     setForm(initialValues);
   };
