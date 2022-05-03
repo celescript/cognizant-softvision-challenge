@@ -29,8 +29,6 @@ function App() {
         }, {}),
       );
       setStatus("resolved");
-      console.log(candidates);
-      console.log(data);
     });
   }, [candidates]);
 
