@@ -2,7 +2,8 @@
 
 .Card{
     min-height: 70px;
-    padding: 0.8rem;
+    
+    
 
     margin: 0 .5em;
 
@@ -10,24 +11,71 @@
     border-radius: 5px;
 
     display: flex;
-    justify-content: space-between;
+    
+    flex-direction: column;
 
-    .buttons{
+    .textContainer{
+        padding: 0.8rem;
+
+        display: flex;
+        justify-content: space-between;
+        
+        .buttons{
         display: flex;
         flex-direction: column;
 
         .btn{
-            background-color: $dark-700;
-            border: none;
-            border-radius: 5px;
             color: $light-800;
-            margin: .18em;
-            cursor: pointer;
+            background-color: $dark-700;
 
             &:hover{
                 background-color: $dark-500;
             }
         }
 
+        
+
+    }}
+
+    .btn{
+        
+        border: none;
+        border-radius: 5px;
+        
+        margin: .18em;
+        cursor: pointer;
+
+        
+    }
+
+    .editContainer{
+        align-self: baseline;
+        width: 100%;
+        filter: saturate(60%);
+
+        display: flex;
+        justify-content: right;
+        border-radius:  0 0 5px 5px ;
+        
+
+        .btn{
+            padding: .2rem .3rem;
+
+            background-color: transparent;
+
+            &:hover{
+                color: $green;
+            }
+            
+
+        }
+
+        .delete{
+            &:hover{
+                color: $red;
+            }
+        }
+
+        
     }
 }

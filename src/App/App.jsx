@@ -27,11 +27,12 @@ function App() {
   }, [candidates]);
 
   useEffect(() => {
-    api.candidates.list().then((candidates) => {
-      console.log(candidates);
-      setCandidates(candidates);
-      setStatus("resolved");
-    });
+    api.candidates
+      .list()
+      .then((candidates) => {
+        setCandidates(candidates);
+      })
+      .finally(setStatus("resolved"));
   }, []);
 
   useEffect(() => {

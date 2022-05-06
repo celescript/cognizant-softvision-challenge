@@ -32,6 +32,10 @@ const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates,
     setForm(initialValues);
   };
 
+  const handleDelete = (c) => {
+    setCandidates((candidates) => candidates.filter((candidate) => candidate.id !== c));
+  };
+
   return (
     <div className={`background-secondary ${styles.Column}`}>
       <h1 className={`text-title ${styles.title}`}>{title}</h1>
@@ -39,6 +43,7 @@ const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates,
       <CandidateList
         candidateStep={candidateStep}
         data={data}
+        handleDelete={handleDelete}
         updateCandidateStep={updateCandidateStep}
       />
 
