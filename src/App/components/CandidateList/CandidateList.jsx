@@ -14,7 +14,7 @@ const CandidateList = ({data, candidateStep, updateCandidateStep, handleDelete})
               <div className={styles.textContainer}>
                 <div className={styles.text}>
                   <h2 className="text-card">{d.name}</h2>
-                  <p className="text-subtitle">{d.comments}</p>
+                  <p className={`text-subtitle ${styles.subtitle}`}>{d.comments}</p>
                 </div>
                 <div className={styles.buttons}>
                   {candidateStep !== 0 && (

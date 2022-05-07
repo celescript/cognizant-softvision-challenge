@@ -39,32 +39,33 @@ const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates,
   return (
     <div className={`background-secondary ${styles.Column}`}>
       <h1 className={`text-title ${styles.title}`}>{title}</h1>
+      <div className={styles.candidatesContainer}>
+        <CandidateList
+          candidateStep={candidateStep}
+          data={data}
+          handleDelete={handleDelete}
+          updateCandidateStep={updateCandidateStep}
+        />
 
-      <CandidateList
-        candidateStep={candidateStep}
-        data={data}
-        handleDelete={handleDelete}
-        updateCandidateStep={updateCandidateStep}
-      />
-
-      {candidateStep === 0 &&
-        (open ? (
-          <CandidateInput
-            form={form}
-            handleChange={handleChange}
-            handleSubmit={handleSubmit}
-            open={open}
-            setOpen={setOpen}
-            type="add"
-          />
-        ) : (
-          <button
-            className={`${styles.button} btn background-secondary`}
-            onClick={() => setOpen(!open)}
-          >
-            <BiPlus className="text-title" />
-          </button>
-        ))}
+        {candidateStep === 0 &&
+          (open ? (
+            <CandidateInput
+              form={form}
+              handleChange={handleChange}
+              handleSubmit={handleSubmit}
+              open={open}
+              setOpen={setOpen}
+              type="add"
+            />
+          ) : (
+            <button
+              className={`${styles.button} btn background-secondary`}
+              onClick={() => setOpen(!open)}
+            >
+              <BiPlus className="text-title" />
+            </button>
+          ))}
+      </div>
     </div>
   );
 };
