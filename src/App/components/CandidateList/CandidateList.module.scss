@@ -3,7 +3,7 @@
 .Card{
     min-height: 70px;
     
-    
+    justify-content: space-between;
 
     margin: 0 .5em;
 
@@ -48,7 +48,7 @@
         
     }
 
-    .editContainer{
+    .deleteContainer{
         align-self: baseline;
         width: 100%;
         filter: saturate(60%);
@@ -64,16 +64,10 @@
             background-color: transparent;
 
             &:hover{
-                color: $green;
+                color: $red;
             }
             
 
-        }
-
-        .delete{
-            &:hover{
-                color: $red;
-            }
         }
 
         

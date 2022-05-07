@@ -35,14 +35,8 @@ const CandidateList = ({data, candidateStep, updateCandidateStep, handleDelete})
                   )}
                 </div>
               </div>
-              <div className={`${styles.editContainer} background-tertiary `}>
-                <button className={styles.btn}>
-                  <FiEdit />
-                </button>
-                <button
-                  className={`${styles.btn} ${styles.delete}`}
-                  onClick={() => handleDelete(d.id)}
-                >
+              <div className={`${styles.deleteContainer} background-tertiary `}>
+                <button className={styles.btn} onClick={() => handleDelete(d.id)}>
                   <FiTrash />
                 </button>
               </div>

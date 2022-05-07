@@ -14,7 +14,7 @@ const steps = ["Entrevista inicial", "Entrevista técnica", "Oferta", "Asignacio
 function App() {
   const [status, setStatus] = useState("init");
   const [candidates, setCandidates] = useState([]);
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useState(localStorage.getItem("THEME") || "light");
   const data = useMemo(() => {
     return candidates.reduce((acc, candidate) => {
       const step = candidate.step;
@@ -36,8 +36,16 @@ function App() {
   }, []);
 
   useEffect(() => {
+    localStorage.setItem("THEME", theme);
+  }, [theme]);
+
+  useEffect(() => {
     api.candidates.save(candidates);
   }, [candidates]);
+
+  if (status === "init") {
+    return <span>Cargando...</span>;
+  }
 
   const updateCandidateStep = (id, stepData, action) => {
     setCandidates((candidates) =>
@@ -53,10 +61,6 @@ function App() {
       }),
     );
   };
-
-  if (status === "init") {
-    return <span>Cargando...</span>;
-  }
 
   return (
     <div className={`${theme} ${styles.theme}`}>
