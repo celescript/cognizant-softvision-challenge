@@ -39,14 +39,8 @@ const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates,
   return (
     <div className={`background-secondary ${styles.Column}`}>
       <h1 className={`text-title ${styles.title}`}>{title}</h1>
-      <div className={styles.candidatesContainer}>
-        <CandidateList
-          candidateStep={candidateStep}
-          data={data}
-          handleDelete={handleDelete}
-          updateCandidateStep={updateCandidateStep}
-        />
 
+      <div className={styles.candidatesContainer}>
         {candidateStep === 0 &&
           (open ? (
             <CandidateInput
@@ -65,6 +59,13 @@ const Column = ({title, data, candidateStep, updateCandidateStep, setCandidates,
               <BiPlus className="text-title" />
             </button>
           ))}
+
+        <CandidateList
+          candidateStep={candidateStep}
+          data={data}
+          handleDelete={handleDelete}
+          updateCandidateStep={updateCandidateStep}
+        />
       </div>
     </div>
   );

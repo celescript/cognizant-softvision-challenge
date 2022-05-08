@@ -4,7 +4,7 @@
 
 .Card{
     min-height: 80px;
-    max-height: 100px;
+    max-height: 350px;
     
     justify-content: space-between;
 
@@ -17,17 +17,21 @@
     
     flex-direction: column;
     overflow: hidden;
+    
     flex-grow: 0;
+    flex-shrink: 0;
+
     
 
     .textContainer{
         padding: 0.8rem;
         max-width: 100%;
-        max-height: 90px;
+    
 
         display: flex;
         justify-content: space-between;
-        flex: 1;
+        
+
         
 
         .text{
